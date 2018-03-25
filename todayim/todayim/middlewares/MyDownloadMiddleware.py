@@ -41,12 +41,14 @@ class MyDownloadMiddleware(object):
         driver = webdriver.Chrome(chrome_options=chromeOptions)
 
         #time.sleep(3)
-        driver.set_script_timeout(20)
+        #driver.set_script_timeout(30)
         driver.set_page_load_timeout(30)
 
         try:
             driver.get(request.url)
-            driver.execute_script(js)
+            #driver.execute_script(js)
+        except:
+            pass
         finally:
             content = driver.page_source.encode('utf-8')
             driver.quit()
