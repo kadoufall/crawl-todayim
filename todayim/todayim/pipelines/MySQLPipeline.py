@@ -4,10 +4,10 @@ import pymysql
 class MySQLPipeline(object):
     def __init__(self):
         self.conn = pymysql.connect(
-            host='115.28.169.114',
+            host='******',
             db='todayim',
-            user='kadoufall',
-            passwd='123456',
+            user='******',
+            passwd='******',
             charset='utf8',
             use_unicode=False)
         self.cursor = self.conn.cursor()
