@@ -1,22 +1,21 @@
-import pymysql
+import sqlite3
 
 
-class MySQLPipeline(object):
+class Sqlite3Pipeline(object):
+
     def __init__(self):
-        self.conn = pymysql.connect(
-            host='******',
-            db='todayim',
-            user='******',
-            passwd='******',
-            charset='utf8',
-            use_unicode=False)
+        self.sqlite_file = 'olderNews.db'
+        self.sqlite_table = 'news'
+
+    def open_spider(self, spider):
+        self.conn = sqlite3.connect(self.sqlite_file)
         self.cursor = self.conn.cursor()
-    
+
     def close_spider(self, spider):
         self.conn.close()
 
     def process_item(self, item, spider):
-        sql = "insert ignore into news(url, loc, title, postTime, commentNum, viewNum, className, passageContent) VALUES(%s, %s, %s, %s, %s, %s, %s, %s);"
+        sql = "insert or ignore into news(url, loc, title, postTime, commentNum, viewNum, className, passageContent) VALUES(?, ?, ?, ?, ?, ?, ?, ?);"
         params = (item['url'], item['loc'], item['title'], item['postTime'],
                   item['commentNum'], item['viewNum'], item['className'], item['passageContent'])
         self.cursor.execute(sql, params)

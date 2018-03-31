@@ -67,7 +67,8 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     #'todayim.pipelines.DuplicatesPipeline.DuplicatesPipeline': 301,
-    'todayim.pipelines.MySQLPipeline.MySQLPipeline': 300,
+    #'todayim.pipelines.MySQLPipeline.MySQLPipeline': 300,
+    'todayim.pipelines.Sqlite3Pipeline.Sqlite3Pipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
